@@ -20,6 +20,6 @@ for filename in os.listdir('./cogs'):
 	if filename.endswith('.py'):
 		client.load_extension(f'cogs.{filename[:-3]}')
 
-token = open(".gitignore", 'r')
+token = open("C:\\Users\\Neytan\\Desktop\\Discord Bot\\bot-env\\token\\token.txt", 'r')
 
 client.run(token.read())
