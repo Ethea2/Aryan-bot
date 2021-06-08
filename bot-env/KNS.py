@@ -20,6 +20,6 @@ for filename in os.listdir('./cogs'):
 	if filename.endswith('.py'):
 		client.load_extension(f'cogs.{filename[:-3]}')
 
-token = open("token.gitignore", 'r')
+token = open(".gitignore", 'r')
 
 client.run(token.read())
