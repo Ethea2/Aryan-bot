@@ -15,7 +15,7 @@ class AMA(commands.Cog):
 	async def askme(self, ctx, *, question):
 		msg = f'{ctx.author.mention}'
 		replies = ['Totoo, walang kaduda-duda!',
-					'Kahit hindi na ako mag dalawang isip >:D',
+					'Kahit hindi na ako mag dalawang isipm, oo >:D',
 					'Siguradong sigurado :P',
 					'Nagtanong ka pa? Eh, halata namang OO!!!',
 					'OO BWUAHAHAHA',
@@ -30,13 +30,13 @@ class AMA(commands.Cog):
 					'Sabi ng mga bituin ay... HINDI >:D',
 					'Wala akong tiwalang mangyayare yan :c',
 					'Nagtanong ka pa? Eh, halata namang hindi >:c nakakakahiya ka',
-					'*SPITS* Hindi *SPITS*',
+					'**SPITS** Hindi **SPITS**',
 					#Neutral
 					'Mas mabuti nang hindi ko sabihin sayo to ngayon',
 					'Subukan mo ulit mag tanong',
 					'Hindi ko talaga mahulaan eh',
 					'Mamaya mo na ako tanungin',
 					'Tinanatamad ako ngayon eh, mamaya na']
-		await ctx.send(msg + ":regional_indicator_k: {}".format(random.choice(replies)))
+		await ctx.send(msg + " :regional_indicator_k: {}".format(random.choice(replies)))
 def setup(client):
 	client.add_cog(AMA(client))
