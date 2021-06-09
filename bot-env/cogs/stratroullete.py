@@ -13,6 +13,9 @@ class strat(commands.Cog):
 	@commands.command()
 	async def strat(self, ctx):
 		msg = f'{ctx.author.mention}'
+		emoji = [":cactus:",
+				":mouse:",
+				":hatching_chick:"]
 		strat_title = [
 						#0
 						"One mic",
@@ -180,8 +183,10 @@ Once the speech is over, your whole team must rush one of the sites.""",
 just armor. Your team must surround the president and protect him/her for the entire round."""
 		]
 
+		random_number_emoji = random.randint(0, 2)
+		random_emoji = emoji[random_number_emoji]
 		random_number = random.randint(0, len(strat_title))
-		await ctx.send(msg + f"Your strat is >:D... \n***{strat_title[random_number]}*** \n{strat_description[random_number]}")
+		await ctx.send(msg + f"Your strat is >:D... \n***{random_emoji}{strat_title[random_number]}{random_emoji}*** \n{strat_description[random_number]}")
 
 def setup(client):
 	client.add_cog(strat(client))
