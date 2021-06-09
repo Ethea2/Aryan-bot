@@ -57,7 +57,7 @@ class play_music(commands.Cog):
 		else:
 			self.is_playing = False
 
-	@commands.command(name = "play", aliases = ['pkay'])
+	@commands.command(name = "play", aliases = ['pkay'], help = "Plays a song")
 	async def p(self, ctx, *args):
 		query = " ".join(args)
 		voice_channel = ctx.author.voice.channel
@@ -77,7 +77,7 @@ class play_music(commands.Cog):
 					await self.play_music()
 
 
-	@commands.command(name = "queue", aliases = ['que'], help = "Shows you the list of the songs in queue ")
+	@commands.command(name = "queue", aliases = ['que', 'q'], help = "Shows you the list of the songs in queue ")
 	async def q(self, ctx):
 		retval = ""
 

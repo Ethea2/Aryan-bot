@@ -10,12 +10,16 @@ class strat(commands.Cog):
 	async def on_ready(self):
 		print("I am Strat Roulette, I'm fully running right now.")
 
-	@commands.command()
+	@commands.command(name = "Strat Roulette", aliases = ["stratz"], help = "I give you random strats for Valorant :smile_cat:")
 	async def strat(self, ctx):
 		msg = f'{ctx.author.mention}'
-		emoji = [":cactus:",
+		emoji_list = [":cactus:",
 				":mouse:",
-				":hatching_chick:"]
+				":hatching_chick:", 
+				":joy:",
+				":joy_cat: ",
+				":smirk_cat:"
+				]
 		strat_title = [
 						#0
 						"One mic",
@@ -183,8 +187,8 @@ Once the speech is over, your whole team must rush one of the sites.""",
 just armor. Your team must surround the president and protect him/her for the entire round."""
 		]
 
-		random_number_emoji = random.randint(0, 2)
-		random_emoji = emoji[random_number_emoji]
+		random_number_emoji = random.randint(0, len(emoji_list))
+		random_emoji = emoji_list[random_number_emoji]
 		random_number = random.randint(0, len(strat_title))
 		await ctx.send(msg + f"Your strat is >:D... \n***{random_emoji}{strat_title[random_number]}{random_emoji}*** \n{strat_description[random_number]}")
 
