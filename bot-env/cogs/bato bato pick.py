@@ -89,4 +89,4 @@ class rock_paper_scissors(commands.Cog):
 				await ctx.send(msg + " u gotta pick something scrub \nRock \nPaper \nScissors")
 
 def setup(client):
-	client.add_cog(bbp(client))
+	client.add_cog(rock_paper_scissors(client))
