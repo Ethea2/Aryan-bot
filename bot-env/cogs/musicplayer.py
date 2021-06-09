@@ -17,8 +17,6 @@ class play_music(commands.Cog):
 		self.vc = ""
 
 
-
-
 	def search_youtube(self, item):
 		with YoutubeDL(self.YDL_OPTIONS) as ydl:
 			try:
@@ -57,8 +55,8 @@ class play_music(commands.Cog):
 		else:
 			self.is_playing = False
 
-	@commands.command(name = "play", aliases = ['pkay'], help = "Plays a song")
-	async def p(self, ctx, *args):
+	@commands.command(name = "play", aliases = ['pkay', 'p'], help = "Plays a song")
+	async def play(self, ctx, *args):
 		query = " ".join(args)
 		voice_channel = ctx.author.voice.channel
 
@@ -70,24 +68,36 @@ class play_music(commands.Cog):
 			if type(song) == type(True):
 				await ctx.send("Could not play the song. Incorrect format try another `keyword`. This could be due to playlist or a livestream format.")	
 			else:
-				await ctx.send("The song has been added to the queue")
 				self.music_queue.append([song, voice_channel])
-
+				await ctx.send(f"`{query}` has been searched and added to the queue")
+				
 				if self.is_playing == False:
 					await self.play_music()
 
 
+
+	@commands.command(name = "disconnect", aliases = ['disc', 'd', 'quit'], help = "Disconnects the bot")
+	async def leave(self, ctx):
+		if self.vc == "" or not self.vc.is_connected() or self.vc == None:
+			await ctx.send("I'm not even connected, watcha trynna do?")
+		else:
+			self.vc.stop()
+			await ctx.voice_client.disconnect()
+
+
+
 	@commands.command(name = "queue", aliases = ['que', 'q'], help = "Shows you the list of the songs in queue ")
-	async def q(self, ctx):
+	async def queue(self, ctx):
 		retval = ""
 
 		for i in range(0, len(self.music_queue)):
-			retval += self.music_queue[i][0]['title'] + "\n"
+			queue_number = i+1
+			retval += f"`{queue_number}:` "+ self.music_queue[i][0]['title'] + "\n"
 
 		print(retval)
 
 		if retval != "":
-			await ctx.send(retval)
+			await ctx.send(f"**The song queue is:**\n{retval}")
 		else:
 			await ctx.send("No music in queue")	
 

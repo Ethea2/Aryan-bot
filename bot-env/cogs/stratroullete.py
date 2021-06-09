@@ -10,7 +10,7 @@ class strat(commands.Cog):
 	async def on_ready(self):
 		print("I am Strat Roulette, I'm fully running right now.")
 
-	@commands.command(name = "Strat Roulette", aliases = ["stratz"], help = "I give you random strats for Valorant :smile_cat:")
+	@commands.command(name = "Strat Roulette", aliases = ["stratz", "strat", "sv"], help = "I give you random strats for Valorant :smile_cat:")
 	async def strat(self, ctx):
 		msg = f'{ctx.author.mention}'
 		emoji_list = [":cactus:",

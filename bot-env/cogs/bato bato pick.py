@@ -19,7 +19,7 @@ class rock_paper_scissors(commands.Cog):
 			emoji = [':scissors:',
 						':newspaper:',
 						':rock:']
-			if choice.casefold() == 'gunting':
+			if choice == 'gunting'.casefold():
 				random_attack = random.randint(0,2)
 				attack = my_turn[random_attack]
 				if attack == my_turn[0]:
@@ -28,7 +28,7 @@ class rock_paper_scissors(commands.Cog):
 					await ctx.send(msg + " MY CHOICE IS: {0} {1} \nNANALO KA WTF, U NERD :nerd:!".format(emoji[1],my_turn[1]))
 				elif attack == my_turn[2]:
 					await ctx.send(msg + " MY CHOICE IS: {0} {1} \nI FOOKIN WIN U SCRUB :innocent:!".format(emoji[2],my_turn[2]))
-			elif choice.casefold() == 'papel':
+			elif choice == 'papel'.casefold():
 				random_attack = random.randint(0,2)
 				attack = my_turn[random_attack]
 				if attack == my_turn[0]:
@@ -37,7 +37,7 @@ class rock_paper_scissors(commands.Cog):
 					await ctx.send(msg + " MY CHOICE IS: {0} {1} \nANG CORNY NAG TIE PA TAYO :unamused:!".format(emoji[1],my_turn[1]))
 				elif attack == my_turn[2]:
 					await ctx.send(msg + " MY CHOICE IS: {0} {1} \nTAE KA NATALO MO KO :cry:!".format(emoji[2],my_turn[2]))
-			elif choice.casefold() == 'bato':
+			elif choice == 'bato'.casefold():
 				random_attack = random.randint(0,2)
 				attack = my_turn[random_attack]
 				if attack == my_turn[0]:
@@ -58,7 +58,7 @@ class rock_paper_scissors(commands.Cog):
 			emoji = [':scissors:',
 						':newspaper:',
 						':rock:']
-			if choice.casefold() == 'Scissors':
+			if choice == 'Scissors'.casefold():
 				random_attack = random.randint(0,2)
 				attack = my_turn[random_attack]
 				if attack == my_turn[0]:
@@ -67,7 +67,7 @@ class rock_paper_scissors(commands.Cog):
 					await ctx.send(msg + " MY CHOICE IS: {0} {1} \nYOU WON WTF, U NERD :nerd:!".format(emoji[1],my_turn[1]))
 				elif attack == my_turn[2]:
 					await ctx.send(msg + " MY CHOICE IS: {0} {1} \nI FOOKIN WIN U SCRUB :innocent:!".format(emoji[2],my_turn[2]))
-			elif choice.casefold() == 'Paper':
+			elif choice == 'Paper'.casefold():
 				random_attack = random.randint(0,2)
 				attack = my_turn[random_attack]
 				if attack == my_turn[0]:
@@ -76,7 +76,7 @@ class rock_paper_scissors(commands.Cog):
 					await ctx.send(msg + " MY CHOICE IS: {0} {1} \nGFDI WHY DID WE TIE :unamused:!?!".format(emoji[1],my_turn[1]))
 				elif attack == my_turn[2]:
 					await ctx.send(msg + " MY CHOICE IS: {0} {1} \nYOU BEAT ME THIS TIME SCRUB :sob:!".format(emoji[2],my_turn[2]))
-			elif choice.casefold() == 'Rock':
+			elif choice == 'Rock'.casefold():
 				random_attack = random.randint(0,2)
 				attack = my_turn[random_attack]
 				if attack == my_turn[0]:

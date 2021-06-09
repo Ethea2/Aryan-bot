@@ -65,6 +65,6 @@ class EightBall(commands.Cog):
 					'I really can\'t guess, what you asked is too hard to answer. Ask me again later',
 					'I can\'t be bothered to even tell you :yawning_face: ',
 					'Not feeling it right now, ask again later :no_mouth:']
-		await ctx.send(msg + " :regional_indicator_k: {}".format(random.choice(replies)))
+		await ctx.send(msg + "  {}".format(random.choice(replies)))
 def setup(client):
 	client.add_cog(EightBall(client))
