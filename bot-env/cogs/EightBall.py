@@ -2,7 +2,7 @@ import discord
 import random
 from discord.ext import commands
 
-class Eight Ball(commands.Cog):
+class EightBall(commands.Cog):
 
 	def __init__(self, client):
 		self.client = client
@@ -67,4 +67,4 @@ class Eight Ball(commands.Cog):
 					'Not feeling it right now, ask again later :no_mouth:']
 		await ctx.send(msg + " :regional_indicator_k: {}".format(random.choice(replies)))
 def setup(client):
-	client.add_cog(AMA(client))
+	client.add_cog(EightBall(client))
