@@ -22,6 +22,6 @@ for filename in os.listdir('./cogs'):
 		client.load_extension(f'cogs.{filename[:-3]}')
 
 
-token = open("C:\\Users\\Neytan\\Desktop\\Discord Bot\\bot-env\\token\\token.txt", 'r')
+token = open("token\\token.txt", 'r')
 
 client.run(token.read())

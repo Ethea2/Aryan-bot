@@ -14,6 +14,8 @@ class play_music(commands.Cog):
 		self.YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
 		self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
+		self.now_playing = ""
+
 		self.vc = ""
 
 
@@ -31,8 +33,11 @@ class play_music(commands.Cog):
 			self.is_playing = True
 
 			m_url = self.music_queue[0][0]['source']
+
 			self.music_queue.pop(0)
+
 			self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
+			
 		else:
 			self.is_playing = False
 
@@ -52,10 +57,11 @@ class play_music(commands.Cog):
 			self.music_queue.pop(0)
 
 			self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
+			
 		else:
 			self.is_playing = False
 
-	@commands.command(name = "play", aliases = ['pkay', 'p'], help = "Plays a song")
+	@commands.command(name = "play", aliases = ['pkay', 'p', 'alexaplay'], help = "Plays a song")
 	async def play(self, ctx, *args):
 		query = " ".join(args)
 		voice_channel = ctx.author.voice.channel
@@ -97,6 +103,7 @@ class play_music(commands.Cog):
 		print(retval)
 
 		if retval != "":
+			# await ctx.send(f"***(now playing)***:{now_playing} \n**The song queue is:**\n{retval}")
 			await ctx.send(f"**The song queue is:**\n{retval}")
 		else:
 			await ctx.send("No music in queue")	
@@ -105,6 +112,7 @@ class play_music(commands.Cog):
 	async def skip(self, ctx):
 		if self.vc != "" and self.vc:
 			self.vc.stop()
+			# self.music_queue.pop(0)
 			await self.play_music()
 
 
