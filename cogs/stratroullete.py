@@ -6,9 +6,11 @@ class strat(commands.Cog):
 	def __init__(self, client):
 		self.client = client
 
+
 	@commands.Cog.listener()
 	async def on_ready(self):
 		print("I am Strat Roulette, I'm fully running right now.")
+
 
 	@commands.command(name = "Strat Roulette", aliases = ["stratz", "strat", "sv"], help = "I give you random strats for Valorant :smile_cat:")
 	async def strat(self, ctx):
@@ -191,6 +193,7 @@ just armor. Your team must surround the president and protect him/her for the en
 		random_emoji = emoji_list[random_number_emoji]
 		random_number = random.randint(0, len(strat_title))
 		await ctx.send(msg + f"Your strat is >:D... \n***{random_emoji}{strat_title[random_number]}{random_emoji}*** \n{strat_description[random_number]}")
+
 
 def setup(client):
 	client.add_cog(strat(client))

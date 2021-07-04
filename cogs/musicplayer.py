@@ -28,6 +28,7 @@ class play_music(commands.Cog):
 
 		return {'source': info['formats'][0]['url'], 'title': info['title']}
 
+
 	def play_next(self):
 		if len(self.music_queue) > 0:
 			self.is_playing = True
@@ -40,6 +41,7 @@ class play_music(commands.Cog):
 			
 		else:
 			self.is_playing = False
+
 
 	async def play_music(self):
 		if len(self.music_queue) > 0:
@@ -60,6 +62,7 @@ class play_music(commands.Cog):
 			
 		else:
 			self.is_playing = False
+
 
 	@commands.command(name = "play", aliases = ['pkay', 'p', 'alexaplay'], help = "Plays a song")
 	async def play(self, ctx, *args):
@@ -107,6 +110,7 @@ class play_music(commands.Cog):
 			await ctx.send(f"**The song queue is:**\n{retval}")
 		else:
 			await ctx.send("No music in queue")	
+
 
 	@commands.command(name = "skip", aliases = ['s'], help = "Skips the current song playing")
 	async def skip(self, ctx):

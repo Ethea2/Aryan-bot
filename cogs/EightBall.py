@@ -7,9 +7,11 @@ class EightBall(commands.Cog):
 	def __init__(self, client):
 		self.client = client
 
+
 	@commands.Cog.listener()
 	async def on_ready(self):
 		print("I am 8ball, I'm fully running right now!")
+
 
 	@commands.command(name = "Filipino 8ball", aliases = ['eytbol', '8ballf', '8f'], help = "8ball ako sa filipino :8ball:")
 	async def eytbol(self, ctx, *, question):
@@ -39,6 +41,7 @@ class EightBall(commands.Cog):
 					'Nakakatamad yung tanong mo, mamaya nalang ulit :crying_cat_face:']
 		await ctx.send(msg + " :regional_indicator_k: {}".format(random.choice(replies)))
 
+
 	@commands.command(name = "8ball", aliases = ['eightball', '8e'], help = "I'm 8ball in english :8ball:")
 	async def eightbol(self, ctx, *, question):
 		msg = f'{ctx.author.mention}'
@@ -66,5 +69,7 @@ class EightBall(commands.Cog):
 					'I can\'t be bothered to even tell you :yawning_face: ',
 					'Not feeling it right now, ask again later :no_mouth:']
 		await ctx.send(msg + "  {}".format(random.choice(replies)))
+
+		
 def setup(client):
 	client.add_cog(EightBall(client))

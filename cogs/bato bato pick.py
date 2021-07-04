@@ -6,9 +6,11 @@ class rock_paper_scissors(commands.Cog):
 		def __init__(self, client):
 			self.client = client
 
+
 		@commands.Cog.listener()
 		async def on_ready(self):
 			print("I am BBP, I'm fully running right now!")
+
 
 		@commands.command(name = "Bato bato pick!", aliases = ['bbp', 'BBP'], help = "Rock paper scissors in Filipino!")
 		async def bato_bato_pick(self, ctx, *,choice = '-'):
@@ -48,6 +50,7 @@ class rock_paper_scissors(commands.Cog):
 					await ctx.send(msg + " MY CHOICE IS: {0} {1} \nBAKIT YAN PINILI MO? WALA TULOY NANALO :confounded:!".format(emoji[2],my_turn[2]))
 			else:
 				await ctx.send(msg + " u gotta pick something scrub \nbato \npapel \ngunting")
+
 
 		@commands.command(name = "Rock paper scissors", aliases = ["rps", "RPS"], help = "Rock paper scissors, what else did you think it was?")
 		async def rock_paper_scissors(self, ctx, *,choice = '-'):
@@ -102,7 +105,6 @@ class rock_paper_scissors(commands.Cog):
 			
 			else:
 				await ctx.send(msg + " u gotta pick something scrub \nRock \nPaper \nScissors")
-
 
 
 def setup(client):
