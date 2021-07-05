@@ -13,6 +13,7 @@ class wiki(commands.Cog):
 		except:
 			return "Sorry I couldn't find what you're looking for :c"
 
+
 	@commands.Cog.listener()
 	async def on_ready(self):
 		print("Wiki bot is running!")
@@ -26,6 +27,7 @@ class wiki(commands.Cog):
 			await ctx.send(wikipedia.summary(query, sentences=2))
 		except:
 			await ctx.send("Sorry I couldn't find what you're looking for :c")
+
 
 	@commands.command(name="Suggest", aliases=['suggest','list'], help="Suggests a list of wikipedia searches")
 	async def suggest_wiki(self, ctx, *args):
