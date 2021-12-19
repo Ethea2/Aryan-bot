@@ -6,17 +6,8 @@ class EightBall(commands.Cog):
 
 	def __init__(self, client):
 		self.client = client
-
-
-	@commands.Cog.listener()
-	async def on_ready(self):
-		print("I am 8ball, I'm fully running right now!")
-
-
-	@commands.command(name = "Filipino 8ball", aliases = ['eytbol', '8ballf', '8f'], help = "8ball ako sa filipino :8ball:")
-	async def eytbol(self, ctx, *, question):
-		msg = f'{ctx.author.mention}'
-		replies = ['Totoo, walang kaduda-duda :sob:!',
+		self.fil_replies = [
+					'Totoo, walang kaduda-duda :sob:!',
 					'Kahit hindi na ako mag dalawang isip, ***OO*** :smiling_imp:',
 					'Siguradong sigurado :zany_face: ',
 					'Kahit man gusto kong sabihing hind, *oo* talaga eh :weary: :weary:',
@@ -39,13 +30,9 @@ class EightBall(commands.Cog):
 					'Busy ako eh, mamaya mo na ako guluhin :face_with_symbols_over_mouth: ',
 					'Mamaya mo na ako guluhin :confounded: ',
 					'Nakakatamad yung tanong mo, mamaya nalang ulit :crying_cat_face:']
-		await ctx.send(msg + " :regional_indicator_k: {}".format(random.choice(replies)))
 
-
-	@commands.command(name = "8ball", aliases = ['eightball', '8e'], help = "I'm 8ball in english :8ball:")
-	async def eightbol(self, ctx, *, question):
-		msg = f'{ctx.author.mention}'
-		replies = ['i\'m surer than a sewer :sweat_drops: :sweat_drops: ',
+		self.eng_replies = [
+					'i\'m surer than a sewer :sweat_drops: :sweat_drops: ',
 					'Without a doubt!! :punch: ',
 					'Yes duh :rolling_eyes:! Why even ask :face_with_symbols_over_mouth:?',
 					'Boring question gets a boring \'yes\' :yawning_face: ',
@@ -68,7 +55,23 @@ class EightBall(commands.Cog):
 					'I really can\'t guess, what you asked is too hard to answer. Ask me again later',
 					'I can\'t be bothered to even tell you :yawning_face: ',
 					'Not feeling it right now, ask again later :no_mouth:']
-		await ctx.send(msg + "  {}".format(random.choice(replies)))
+
+
+	@commands.Cog.listener()
+	async def on_ready(self):
+		print("I am 8ball, I'm fully running right now!")
+
+
+	@commands.command(name = "Filipino 8ball", aliases = ['eytbol', '8ballf', '8f'], help = "8ball ako sa filipino :8ball:")
+	async def eytbol(self, ctx, *, question):
+		msg = f'{ctx.author.mention}'
+		await ctx.send(msg + "{}".format(random.choice(self.fil_replies)))
+
+
+	@commands.command(name = "8ball", aliases = ['eightball', '8e'], help = "I'm 8ball in english :8ball:")
+	async def eightbol(self, ctx, *, question):
+		msg = f'{ctx.author.mention}'
+		await ctx.send(msg + "{}".format(random.choice(self.eng_replies)))
 
 		
 def setup(client):

@@ -1,4 +1,5 @@
 import discord
+import random
 from discord.ext import commands
 from youtube_dl import YoutubeDL
 
@@ -14,7 +15,7 @@ class play_music(commands.Cog):
 		self.YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
 		self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
-		self.now_playing = ""
+		self.now_playing = []
 
 		self.vc = ""
 
@@ -34,8 +35,8 @@ class play_music(commands.Cog):
 			self.is_playing = True
 
 			m_url = self.music_queue[0][0]['source']
-
-			self.music_queue.pop(0)
+			self.now_playing.clear()
+			self.now_playing.append(self.music_queue.pop(0))
 
 			self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
 			
@@ -56,7 +57,7 @@ class play_music(commands.Cog):
 
 			print(self.music_queue)
 
-			self.music_queue.pop(0)
+			self.now_playing.append(self.music_queue.pop(0))
 
 			self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
 			
@@ -66,29 +67,33 @@ class play_music(commands.Cog):
 
 	@commands.command(name = "play", aliases = ['pkay', 'p', 'alexaplay'], help = "Plays a song")
 	async def play(self, ctx, *args):
-		query = " ".join(args)
+		#random_rickroll = random.randint(0,10)
+		#if random_rickroll >= 4 :
+			#query = "rick roll"
+		#else:
+			#query = ' '.join(args)
+		query = ' '.join(args)
 		voice_channel = ctx.author.voice.channel
 
 		if voice_channel is None:
-			await ctx.send("Please connect to a voice channel u fookin scrub!")
+			await ctx.send(">>> Please connect to a voice channel u fookin scrub!")
 
 		else:
 			song = self.search_youtube(query)
 			if type(song) == type(True):
-				await ctx.send("Could not play the song. Incorrect format try another `keyword`. This could be due to playlist or a livestream format.")	
+				await ctx.send(">>> Could not play the song. Incorrect format try another `keyword`. This could be due to playlist or a livestream format.")	
 			else:
 				self.music_queue.append([song, voice_channel])
-				await ctx.send(f"`{query}` has been searched and added to the queue")
+				await ctx.send(f">>> `{song['title']}` has been searched and added to the queue")
 				
 				if self.is_playing == False:
 					await self.play_music()
 
 
-
 	@commands.command(name = "disconnect", aliases = ['disc', 'd', 'quit'], help = "Disconnects the bot")
 	async def leave(self, ctx):
 		if self.vc == "" or not self.vc.is_connected() or self.vc == None:
-			await ctx.send("I'm not even connected, watcha trynna do?")
+			await ctx.send(">>> I'm not even connected, watcha trynna do?")
 		else:
 			self.vc.stop()
 			await ctx.voice_client.disconnect()
@@ -98,7 +103,7 @@ class play_music(commands.Cog):
 	@commands.command(name = "queue", aliases = ['que', 'q'], help = "Shows you the list of the songs in queue ")
 	async def queue(self, ctx):
 		retval = ""
-
+		first_song = self.now_playing[0][0]['title']
 		for i in range(0, len(self.music_queue)):
 			queue_number = i+1
 			retval += f"`{queue_number}:` "+ self.music_queue[i][0]['title'] + "\n"
@@ -107,16 +112,16 @@ class play_music(commands.Cog):
 
 		if retval != "":
 			# await ctx.send(f"***(now playing)***:{now_playing} \n**The song queue is:**\n{retval}")
-			await ctx.send(f"**The song queue is:**\n{retval}")
+			await ctx.send(f">>> **Now playing:**\n`◉:`{first_song}\n**The song queue is:**\n{retval}")
 		else:
-			await ctx.send("No music in queue")	
+			await ctx.send(">>> No music in queue")	
 
 
 	@commands.command(name = "skip", aliases = ['s'], help = "Skips the current song playing")
 	async def skip(self, ctx):
 		if self.vc != "" and self.vc:
 			self.vc.stop()
-			# self.music_queue.pop(0)
+			self.now_playing.clear()
 			await self.play_music()
 
 
