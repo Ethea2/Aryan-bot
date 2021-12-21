@@ -1,8 +1,15 @@
 import os
 import json
 
-class Database:
+class DiscordUser:
+    def __init__(self, userID, userName, pseudonym, wishes):
+        self.userID = userID
+        self.pseudonym = pseudonym
+        self.userName = userName
+        self.wishes = wishes
 
+
+class Database:
     def __init__(self, server):
         self.server = server
 
@@ -10,30 +17,28 @@ class Database:
         save_path = "./cogs/jsonFiles/"
         full_path_file = os.path.join(save_path, f"{self.server}.json")
         with open(f"{full_path_file}", 'w+') as file:
-            data = json.load(file)
-            if f"{self.server}" in data.keys():
-                data[f"{self.server}"].append(data)
+            if os.stat(full_path_file).st_size == 0:
+                placeholder = {
+                    f"{self.server}":[
+                        
+                    ]
+                }
+                json.dump(placeholder,file)
                 file.seek(0)
-                file.dump(data)
-            else:
-                data[f"{self.server}"] = data
-                file.seek(0)
-                file.dump(data)
+                print("FILE FUCKIGN EMPTY?!?!")
+            data_base = json.load(file)
+            print(data_base)
+           # if f"{self.server}" in data_base.keys():
+            data_base[f"{self.server}"].append(data)
+            file.seek(0)
+            json.dump(data_base, file)
+           # else:
+           #     data_base[f"{self.server}"].append(data)
+           #     file.seek(0)
+           #     json.dump(data, file)
 
 
     def add_person(self, userID, userName, pseudonym, wishes):
-        data =[
-                {
-                    "userName" : "",
-                    "userID" : "",
-                    "pseudonym" : "",
-                    "wishes" : []
-                }
-            ]
+        data = DiscordUser(userID, userName, pseudonym, wishes)
+        self.write_file(data.__dict__)
 
-        data[0]['userID'] = userID
-        data[0]['userName'] = userName
-        data[0]['pseudonym'] = pseudonym
-        data[0]['wishes'] = [wish for wish in wishes]
-        
-        self.write_file(data)

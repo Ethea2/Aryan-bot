@@ -14,11 +14,11 @@ class ExchangeGift(commands.Cog):
         pseudonym = args[0]
         wishes = [wish for wish in args if wish != args[0]]
         server = ctx.message.guild.name #gets server name
-        user = ctx.author #gets username and tag
-        userID = user.id #gets userID
+        userName = ctx.message.author #gets username
+        userID = ctx.author.id #gets userID
         #if len(args) == 2:
         database = Database(f"{server}")
-        database.add_person(userID, user, pseudonym, wishes)
+        database.add_person(userID, str(userName), pseudonym, wishes)
         await ctx.author.send(f"<@{str(userID)}> You have successfully registered!\n **Your Pseudonym**:\n `{pseudonym}`\n **Your Wishes**:\n {wishes}")
         #else:
            # await ctx.channel.send("wrong format scrub")
