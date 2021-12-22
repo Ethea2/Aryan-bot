@@ -16,12 +16,18 @@ class ExchangeGift(commands.Cog):
         server = ctx.message.guild.name #gets server name
         userName = ctx.message.author #gets username
         userID = ctx.author.id #gets userID
-        #if len(args) == 2:
         database = Database(f"{server}")
         database.add_person(userID, str(userName), pseudonym, wishes)
         await ctx.author.send(f"<@{str(userID)}> You have successfully registered!\n **Your Pseudonym**:\n `{pseudonym}`\n **Your Wishes**:\n {wishes}")
-        #else:
-           # await ctx.channel.send("wrong format scrub")
+
+
+
+    @commands.command(name="xlsjpair", help="Special pair command!")
+    async def xlsjpair(self, ctx):
+        server = ctx.message.guild.name
+        database = Database(server)
+        database.pair_people()
+
 
 #sending a DM:
     #ctx.author.send(f"hello there: {user}")
