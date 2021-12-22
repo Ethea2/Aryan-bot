@@ -16,22 +16,54 @@ class Database:
     def write_file(self, data):
         save_path = "./cogs/jsonFiles/"
         full_path_file = os.path.join(save_path, f"{self.server}.json")
-        with open(f"{full_path_file}", 'w+') as file:
-            if os.stat(full_path_file).st_size == 0:
-                placeholder = {
-                    f"{self.server}":[
-                        
-                    ]
-                }
-                json.dump(placeholder,file)
-                file.seek(0)
-                print("FILE FUCKIGN EMPTY?!?!")
-            data_base = json.load(file)
-            print(data_base)
-           # if f"{self.server}" in data_base.keys():
-            data_base[f"{self.server}"].append(data)
-            file.seek(0)
-            json.dump(data_base, file)
+
+        try:
+
+            with open(f"{full_path_file}", 'r+') as file:
+                try:
+                    data_base = json.load(file)
+                    print(data_base)
+                # if f"{self.server}" in data_base.keys():
+                    data_base[f"{self.server}"].append(data)
+                    file.seek(0)
+                    json.dump(data_base, file)
+                
+                except:
+                    placeholder = {
+                            f"{self.server}":[
+                                
+                            ]
+                        }
+                    json.dump(placeholder,file)
+                    file.seek(0)
+                    print("FILE FUCKIGN EMPTY?!?!")
+                    data_base = json.load(file)
+                    data_base[f"{self.server}"].append(data)
+                    file.seek(0)
+                    json.dump(data_base, file)
+        except:
+            with open(f"{full_path_file}", 'w+') as file:
+                try:
+                    data_base = json.load(file)
+                    print(data_base)
+                # if f"{self.server}" in data_base.keys():
+                    data_base[f"{self.server}"].append(data)
+                    file.seek(0)
+                    json.dump(data_base, file)
+                
+                except:
+                    placeholder = {
+                            f"{self.server}":[
+                                
+                            ]
+                        }
+                    json.dump(placeholder,file)
+                    file.seek(0)
+                    print("FILE FUCKIGN EMPTY?!?!")
+                    data_base = json.load(file)
+                    data_base[f"{self.server}"].append(data)
+                    file.seek(0)
+                    json.dump(data_base, file)
            # else:
            #     data_base[f"{self.server}"].append(data)
            #     file.seek(0)
