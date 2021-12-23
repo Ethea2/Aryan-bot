@@ -13,12 +13,19 @@ class DiscordUser:
 class Database:
     def __init__(self, server):
         self.server = server
+        self.save_path = "./cogs/jsonFiles/"
+        self.full_path_file = os.path.join(self.save_path, f"{self.server}.json")
+        self.full_path_file_pair = os.path.join(self.save_path, f"{self.server}")
+
 
     def write_file(self, data):
-        save_path = "./cogs/jsonFiles/"
-        full_path_file = os.path.join(save_path, f"{self.server}.json")
+        if os.path.exists(self.full_path_file):
+            exists = 'r'
+        else:
+            exists = 'w'
 
-        with open(f"{full_path_file}", f'w+') as file:
+
+        with open(f"{self.full_path_file}", f'{exists}+') as file:
             try:
                 data_base = json.load(file)
                 cleaned_data = self.clean_data(data_base, data)
@@ -55,15 +62,12 @@ class Database:
 
 
     def pair_people(self):
-        save_path = "./cogs/jsonFiles/"
-        full_path_file = os.path.join(save_path, f"{self.server}")
-
-        with open(f"{full_path_file}.json", 'r') as file:
+        with open(f"{self.full_path_file_pair}.json", 'r') as file:
             temporary_data = json.load(file)
 
         main_pair = self.randomize_pair(temporary_data)
 
-        with open(f"{full_path_file}-paired.json", 'w+') as file:
+        with open(f"{self.full_path_file_pair}-paired.json", 'w+') as file:
             json.dump(main_pair, file)
 
 
@@ -86,8 +90,23 @@ class Database:
                 second_pair_list.append(move_person)
 
         for item in first_pair_list:
-            random_second_pair = random.randint(0, len(second_pair_list)-1)
-            holder = [item, second_pair_list[random_second_pair]]
+            random_second_pair = second_pair_list.pop(random.randint(0, len(second_pair_list)-1))
+            holder = [item, random_second_pair]
             final_pair.append(holder)
         
         return final_pair
+
+
+    def get_pair(self, userID):
+        with open(f'{self.full_path_file_pair}-paired.json', 'r') as file:
+            complete_data = json.load(file)
+
+        print(complete_data)
+        for outer_item in complete_data:
+            if userID in outer_item[0].values() or userID in outer_item[1].values():
+                for inner_item in outer_item:
+                    if userID != inner_item['userID']:
+                        return inner_item
+                        break
+           
+        return False
