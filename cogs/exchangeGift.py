@@ -38,6 +38,8 @@ class ExchangeGift(commands.Cog):
         pair_dictionary = database.get_pair(userID)
         if pair_dictionary == False:
             await ctx.author.send("You do not have a pair")
+        elif type(pair_dictionary) == type('hello'):
+            await ctx.send("Pairings have not been made at this moment!")
         else:
             await ctx.author.send(f"<@{str(userID)}> Your pair is: \n:sunglasses:`{pair_dictionary['pseudonym']}`:sunglasses: \n And his/her wishes are: \n :star2:`{pair_dictionary['wishes']}`:star2:")
 

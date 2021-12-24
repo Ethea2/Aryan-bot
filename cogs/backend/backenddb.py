@@ -98,15 +98,18 @@ class Database:
 
 
     def get_pair(self, userID):
-        with open(f'{self.full_path_file_pair}-paired.json', 'r') as file:
-            complete_data = json.load(file)
+        if f'{self.full_path_file_pair}-paired.json'.exists():
+            with open(f'{self.full_path_file_pair}-paired.json', 'r') as file:
+                complete_data = json.load(file)
 
-        print(complete_data)
-        for outer_item in complete_data:
-            if userID in outer_item[0].values() or userID in outer_item[1].values():
-                for inner_item in outer_item:
-                    if userID != inner_item['userID']:
-                        return inner_item
-                        break
-           
-        return False
+            print(complete_data)
+            for outer_item in complete_data:
+                if userID in outer_item[0].values() or userID in outer_item[1].values():
+                    for inner_item in outer_item:
+                        if userID != inner_item['userID']:
+                            return inner_item
+                            break
+            
+            return False
+        else:
+            return 'Pairings are not made yet.'
