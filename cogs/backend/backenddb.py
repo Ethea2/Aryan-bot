@@ -98,7 +98,7 @@ class Database:
 
 
     def get_pair(self, userID):
-        if f'{self.full_path_file_pair}-paired.json'.exists():
+        if os.path.exists(f'{self.full_path_file_pair}-paired.json'):
             with open(f'{self.full_path_file_pair}-paired.json', 'r') as file:
                 complete_data = json.load(file)
 
