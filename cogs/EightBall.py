@@ -73,6 +73,13 @@ class EightBall(commands.Cog):
 		msg = f'{ctx.author.mention}'
 		await ctx.send(msg + "{}".format(random.choice(self.eng_replies)))
 
+	@commands.command(name='spam')
+	async def spam(self, ctx):
+		n = 'spammed \n'
+		for i in range(0,50):
+			n += 'spammed \n'
+		await ctx.send(n)
+
 		
 def setup(client):
 	client.add_cog(EightBall(client))
