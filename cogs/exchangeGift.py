@@ -26,12 +26,12 @@ class ExchangeGift(commands.Cog):
         await ctx.message.delete()
 
 
-    @commands.command(name="xlsjpair", help="Special pair command!")
-    async def xlsjpair(self, ctx):
-        server = ctx.message.guild.name
-        database = Database(server)
-        database.pair_people()
-        await ctx.message.delete()
+    #@commands.command(name="xlsjpair", help="Special pair command!")
+    #async def xlsjpair(self, ctx):
+    #    server = ctx.message.guild.name
+    #    database = Database(server)
+    #    database.pair_people()
+    #    await ctx.message.delete()
 
     
     @commands.command(name="getpair", help="Gets your pair's wishes and pseudonym")

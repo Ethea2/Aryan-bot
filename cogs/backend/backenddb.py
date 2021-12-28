@@ -71,7 +71,6 @@ class Database:
             json.dump(main_pair, file)
 
 
-
     def randomize_pair(self, temporary_data):
         first_pair_list = []
         second_pair_list = []
@@ -102,9 +101,8 @@ class Database:
             with open(f'{self.full_path_file_pair}-paired.json', 'r') as file:
                 complete_data = json.load(file)
 
-            print(complete_data)
             for outer_item in complete_data:
-                if userID in outer_item[0].values() or userID in outer_item[1].values():
+                if userID in outer_item[0].values():
                     for inner_item in outer_item:
                         if userID != inner_item['userID']:
                             return inner_item
