@@ -49,13 +49,13 @@ class ExchangeGift(commands.Cog):
         await ctx.message.delete()
 
 
-    @commands.command(name="xmas")
-    async def xmas(self, ctx):
-        userID = ctx.author.id
-        hate = ['FOOKIN RETARD', 'FOOKIN ASSHOLE', 'FOOKIN CRAP', 'KEK LMAO']
-        merry_blank = ['CRISIS', 'XMAS', 'CHRISTMAS']
-        random_hate = random.choice(hate)
-        await ctx.send(f"<@{str(userID)}> MERRY {random.choice(merry_blank)} YOU {random_hate}. :low_brightness:")
+    #@commands.command(name="xmas")
+    #async def xmas(self, ctx):
+    #    userID = ctx.author.id
+    #    hate = ['FOOKIN RETARD', 'FOOKIN ASSHOLE', 'FOOKIN CRAP', 'KEK LMAO']
+    #    merry_blank = ['CRISIS', 'XMAS', 'CHRISTMAS']
+    #    random_hate = random.choice(hate)
+    #    await ctx.send(f"<@{str(userID)}> MERRY {random.choice(merry_blank)} YOU {random_hate}. :low_brightness:")
 
 #sending a DM:
     #ctx.author.send(f"hello there: {user}")
