@@ -11,6 +11,7 @@ bot features:
   5. Wikipedia (Scraping wikipedia)
   6. Zed (Sends random pictures of my Cat named "Zed")
   7. Rock Paper Scissors (English and Filipino, with secret commands)
+  8. Exchange gift pairs feature for parties!
 
 It's also heavily inspired by the dankmemer bot >:D
 
